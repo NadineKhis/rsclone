@@ -1,0 +1,123 @@
+.Accordeon *{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.Accordeon {
+    color: #ffffff;
+    border-bottom: 8px solid #222;
+    padding: 70px 45px;
+    text-align: center;
+}
+
+.Accordeon h2 {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.Accordeon .item_wrapper{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.Accordeon .item:hover{
+    cursor: pointer;
+}
+
+.Accordeon .item {
+    padding: 20px 32px 20px 32px;
+    font-size: 26px;
+    display: flex;
+    max-width: 815px;
+    margin: 8px auto 1px;
+    justify-content: space-between;
+    align-items: center;
+    background: #303030;
+    user-select: none;
+    z-index: 10;
+}
+
+.Accordeon .xButton{
+    font-size: 32px;
+    transition: transform 0.15s ease;
+}
+
+.Accordeon .item_active .xButton{
+    transform: rotate(45deg);
+}
+
+.Accordeon .item_text{
+    font-size: 26px;
+    width: 100%;
+    max-width: 815px;
+    margin: 0 auto;
+    background: #303030;
+    text-align: justify;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 32px 0px 32px;
+    transition: max-height 0.15s ease, padding 0.15s ease;
+}
+
+.Accordeon .item_text p:not(:last-child){
+    margin-bottom: 35px;
+}
+
+.Accordeon .item_active .item_text{
+    padding: 32px;
+    max-height: 900px;
+    transition: max-height 0.15s ease, padding 0.15 ease;
+}
+
+.Accordeon .item h3{
+    line-height: 26px;
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.Accordeon .input_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.Accordeon .email_wrapper{
+    margin-top: 60px;
+}
+
+.Accordeon .email_wrapper h3{
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.Accordeon .email_wrapper input{
+    width: 450px;
+    height: 60px;
+    padding: 10px 10px 0;
+}
+
+.Accordeon .email_wrapper input:focus{
+    outline: none;
+}
+
+.Accordeon .email_wrapper button{
+    height: 60px;
+    width: 312px;
+    background-color: #E50914;
+    color: #fff;
+    font-size: 26px;
+    border: none;
+}
+
+.Accordeon .email_wrapper button:focus{
+    outline: none;
+}
+
+.Accordeon .email_wrapper button:hover{
+    background: #F40612;
+    cursor: pointer;
+}
+
+.Accordeon .email_wrapper button:active{
+    background-color: #BB0A12;
+}

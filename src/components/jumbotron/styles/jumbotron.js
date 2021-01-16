@@ -60,7 +60,7 @@ export const Image = styled.img`
 export const Container = styled.div`
     @media (max-width: 1000px) {
         ${Item}: last-of-type h2 {
-            magin-bottom: 50px;
+            margin-bottom: 50px;
         }
     }
 `;
