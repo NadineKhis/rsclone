@@ -76,69 +76,9 @@
     font-weight: normal;
 }
 
-.Accordeon .input_wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-.Accordeon .email_wrapper{
-    margin-top: 60px;
-}
-
-.Accordeon .email_wrapper h3{
-    font-weight: normal;
-    margin-bottom: 20px;
-}
-
-.Accordeon .email_wrapper input{
-    width: 450px;
-    height: 60px;
-    padding: 10px 10px 0;
-}
-
-.Accordeon .email_wrapper input:focus{
-    outline: none;
-}
-
-.Accordeon .email_wrapper button{
-    height: 60px;
-    width: 312px;
-    background-color: #E50914;
-    color: #fff;
-    font-size: 26px;
-    border: none;
-}
-
-.Accordeon .email_wrapper button:focus{
-    outline: none;
-}
-
-.Accordeon .email_wrapper button:hover{
-    background: #F40612;
-    cursor: pointer;
-}
-
-.Accordeon .email_wrapper button:active{
-    background-color: #BB0A12;
-}
-
 @media(max-width: 790px){
     .Accordeon h2 {
         font-size: 36px;
-    }
-
-    .Accordeon .input_wrapper{
-        flex-direction: column;
-    }
-
-    .Accordeon .email_wrapper input{
-        margin-bottom: 15px;
-        width: 100%;
-        max-width: none;
-    }
-
-    .Accordeon .email_wrapper button{
-        margin: 0 auto;
     }
 }
 
@@ -173,11 +113,6 @@
 
     .Accordeon .item h3, .Accordeon .item_text{
         font-size: 14px;
-    }
-
-    .Accordeon .email_wrapper button{
-        font-size: 16px;
-        width: 240px;
     }
 
     .Accordeon .item, .Accordeon .item_text{

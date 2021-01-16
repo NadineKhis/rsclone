@@ -1,22 +1,52 @@
-import React from 'react'
+import React, { Component } from 'react'
+import faqItems from '../../fixtures/faqs.json'
 import './accordeon.css'
-import { AccordeonItem } from './accordeoneItem'
 
-export default function Accordeon() {
+export class AccordeonItem extends Component {
+    state = {
+        activeItemID: null,
+    }
 
-    return (
-        <div className='Accordeon'>
-            <h2>Frequently Asked Questions</h2>
+    render() {
+        const onItemClickHandler = (props) => {
+            if (this.state.activeItemID === props.id) {
+                this.setState({
+                    activeItemID: null
+                })
+            } else {
+                this.setState({
+                    activeItemID: props.id
+                })
+            }
+        }
 
-            <AccordeonItem />
+        return (
+            faqItems.map((item) => {
+                const cls = ['item_wrapper']
 
-            <div className='email_wrapper'>
-                <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
-                <div className="input_wrapper">
-                    <input type="text" placeholder='Email adress' />
-                    <button>TRY 30 DAYS FREE ></button>
-                </div>
-            </div>
-        </div>
-    )
+                if (item.id === this.state.activeItemID) {
+                    cls.push('item_active')
+                }
+
+                return (
+                    <div className={cls.join(' ')} key={item.id}>
+                        <div className='item' onClick={() => onItemClickHandler(item)}>
+                            <h3>{item.header}</h3>
+                            <div className='xButton '>+</div>
+                        </div>
+                        <div className="item_text">{item.body.map((pItem, index) => {
+                            return (
+                                <React.Fragment key={index}>
+                                    <p>{pItem}</p>
+                                </React.Fragment>
+                            )
+                        })}</div>
+                    </div>
+                )
+
+            })
+
+        )
+    }
+
 }
