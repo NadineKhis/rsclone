@@ -10,6 +10,8 @@
 .TrialForm h3{
     font-weight: normal;
     margin-bottom: 20px;
+    color: #fff;
+    text-align: center;    
 }
 
 .TrialForm input{

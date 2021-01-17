@@ -1,6 +1,6 @@
 import React from 'react'
 import { AccordeonItem } from '../components/accordeon/accordeon'
-import TrialForm from '../components/accordeon/trialForm/trialForm'
+import { TrialForm } from '../components/accordeon/trialForm/trialForm'
 
 export default function Accordeon() {
 
