@@ -1,5 +1,6 @@
 import React from 'react'
 import './button.css'
+import PropTypes from 'prop-types';
 
 export function Button(props) {
     return (
@@ -8,6 +9,10 @@ export function Button(props) {
                 {props.name}
             </button>
         </a>
-
     )
-} 
+}
+
+Button.propTypes = {
+  page: PropTypes.node,
+  name: PropTypes.node,
+}
