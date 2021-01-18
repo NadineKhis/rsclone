@@ -1,0 +1,24 @@
+.sign_button{
+    width: 80px;
+    height: 35px;
+    background: #E50914;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.sign_button:hover {
+    cursor: pointer;
+}
+
+.sign_button:focus{
+    outline: none;
+}
+
+@media (max-width: 615px){
+    .sign_button{
+        width: 60px;
+        height: 26px;
+        font-size: 14px;
+    }
+}
