@@ -14,3 +14,11 @@
 .sign_button:focus{
     outline: none;
 }
+
+@media (max-width: 615px){
+    .sign_button{
+        width: 60px;
+        height: 26px;
+        font-size: 14px;
+    }
+}
