@@ -1,0 +1,83 @@
+/* .browse_wrapper_active{
+    background: url('./images/misc/joker1.jpg');
+} */
+.browse_header{
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.browse_nav{
+    margin: 0 auto;
+    height: 68px;
+    padding: 0 50px 0 50px;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    transition: background 0.3s;
+    z-index: 10;
+    max-width: 1920px;
+}
+
+.browse_nav_moved{
+    background: #141414;
+}
+
+.browse_nav ul{
+    list-style: none;
+    color: #e5e5e5;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.browse_nav ul li:not(:first-child){
+    margin-left: 20px;
+}
+
+.search_icon{
+    filter: brightness(0) invert(1);
+    height: 25px;
+    width: auto;
+}
+
+.smal_user_icon{
+    width: 30px;
+    height: auto;
+    border-radius: 3px;
+}
+
+.browse_nav_menu{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-self: stretch;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.browse_nav .search_icon{
+    width: 22px;
+    height: auto;
+    margin-top: 4px;
+}
+
+.navigation_menu li{
+    transition: color 0.4s ease;
+}
+
+.navigation_menu li:hover{
+    cursor: pointer;
+    color: #b3b3b3;
+}
+
+.navigation_menu .active{
+    color: #fff;
+}
+
+.navigation_icons li:hover{
+    cursor: pointer;
+}

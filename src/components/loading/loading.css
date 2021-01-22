@@ -1,0 +1,42 @@
+.user_img{
+    width: 150px;
+    height: auto;
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
+.user_img:hover{
+    /* cursor: pointer; */
+}
+
+.loading_wrapper{
+text-align: center;
+color: #fff;
+margin-top: 175px;
+}
+
+.loading_wrapper h2{
+    font-size: 46px;
+}
+
+.current_user h3{
+    color: #808080;
+    margin-top: 10px;
+}
+
+.current_user{
+    width: max-content;
+    margin: 0 auto;
+}
+
+.current_user:hover {
+    cursor: pointer;
+}
+
+.current_user:hover .user_img{
+    border: 2px solid #e5e5e5;
+}
+
+.current_user:hover h3{
+    color: #fff;
+}
