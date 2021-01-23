@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './pages/home'
 import Browse from './pages/browse'
 import Signin from './pages/signin'
-import Signup from './pages/signup'
 
 export default function App() {
   return (
@@ -17,9 +16,6 @@ export default function App() {
       </Route>
       <Route path={ROUTES.SIGN_IN}>
         <Signin />
-      </Route>
-      <Route path={ROUTES.SIGN_UP}>
-        <Signup />
       </Route>
     </BrowserRouter>
 
