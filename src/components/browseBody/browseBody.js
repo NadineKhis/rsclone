@@ -10,6 +10,9 @@ export function BrowseBody(props) {
         height: '720px',
         maxWidth: '1920px',
     }
+
+
+
     return (
         <div className='browseBody_wrapper'>
             <div className='current_film_describe' style={browseStyle}>
@@ -18,7 +21,7 @@ export function BrowseBody(props) {
                 <button>Play</button>
             </div>
             <div className='main_wrapper'>
-                <FilmCategoryItem category={props.categoryes} onLeftArrowClick={props.onLeftArrowClick} onRightArrowClick={props.onRightArrowClick} />
+                <FilmCategoryItem dataLoaded={props.dataLoaded} state={props.state} />
             </div>
         </div>
     )

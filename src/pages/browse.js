@@ -6,6 +6,7 @@ import { FooterContainer } from '../containers/footer'
 
 export default class Browse extends React.Component {
     state = {
+        dataLoaded: true,
         userLogedIn: false,
         userImg: '/images/users/2.png',
         category: {
@@ -17,71 +18,46 @@ export default class Browse extends React.Component {
         }
     }
 
+
+    //     fetch('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=20&order=RATING&type=ALL&ratingTo=10&yearFrom=1888&yearTo=2020&page=1',
+
+    // // Второй аргумент это объект с указаниями, методаи заголовка
+    //     { 
+    // 	method: "GET", 
+    // 	headers:{"accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d"} 
+    // 	})
+
+    // .then( response => {
+    // 	if (response.status !== 200) {
+
+    //         return Promise.reject(); 
+    //   }
+    //     return response.text()
+    // })
+    // .then(i => console.log(i))
+    // .catch(() => console.log('ошибка'));
+
     render() {
+
         const onClickHandler = () => {
             this.setState({
-                userLogedIn: !this.state.userLogedIn
-            })
-        }
-
-        const onLeftArrowClickHandler = () => {
-            let newPrevSlide
-            let newNextSlide
-
-            if (this.state.category.name.prevSlide - 3 < 0) {
-                newPrevSlide = 0;
-                newNextSlide = newPrevSlide + 4;
-            } else {
-                newPrevSlide = this.state.category.name.prevSlide - 3
-                newNextSlide = this.state.category.name.nextSlide - 3
-            }
-
-            this.setState({
-                category: {
-                    name: {
-                        prevSlide: newPrevSlide,
-                        nextSlide: newNextSlide,
-                        categorylength: 26,
-                    }
-                }
-            })
-        }
-
-        const onRightArrowClickHandler = () => {
-            let newPrevSlide
-            let newNextSlide
-
-            if ((this.state.category.name.nextSlide + 3) > this.state.category.name.categorylength) {
-                newNextSlide = this.state.category.name.categorylength;
-                newPrevSlide = newNextSlide - 4;
-            } else {
-                newNextSlide = this.state.category.name.nextSlide + 3;
-                newPrevSlide = this.state.category.name.prevSlide + 3
-            }
-
-            this.setState({
-                category: {
-                    name: {
-                        prevSlide: newPrevSlide,
-                        nextSlide: newNextSlide,
-                        categorylength: 26,
-                    }
-                }
+                userLogedIn: !this.state.userLogedIn,
             })
         }
 
         return (
             <div className='browse'>
                 <div className='browse_header'>
-                    <BrowseNav userLogedIn={this.state.userLogedIn} userImg={this.state.userImg} />
+                    <BrowseNav userLogedIn={this.state.userLogedIn} userImg={this.state.userImg} dataLoaded={this.state.dataLoaded} />
                 </div>
-                {!this.state.userLogedIn
-                    ? <Loading onClick={onClickHandler} userImg={this.state.userImg} />
-                    : (<React.Fragment>
-                        <BrowseBody categoryes={this.state.category} onLeftArrowClick={onLeftArrowClickHandler} onRightArrowClick={onRightArrowClickHandler} />
+                {this.state.userLogedIn && this.state.dataLoaded
+                    ? (<React.Fragment>
+                        <BrowseBody dataLoaded={this.state.dataLoaded} />
                         <FooterContainer />
                     </React.Fragment>
-                    )}
+                    )
+                    : <Loading onClick={onClickHandler} userImg={this.state.userImg} state={this.state} />
+                }
 
             </div>
         )

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Logo } from '../browsePageLogo/logo'
 import './browseNav.css'
 
@@ -7,7 +7,7 @@ export function BrowseNav(props) {
     return (
         <div className='browse_nav'>
             <Logo />
-            { props.userLogedIn
+            { props.userLogedIn && props.dataLoaded
                 ? (<div className='browse_nav_menu'>
                     <div className='navigation'>
                         <ul className='navigation_menu'>

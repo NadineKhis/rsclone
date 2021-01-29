@@ -4,6 +4,6 @@ import './logo.css'
 
 export function Logo() {
     return (
-        <img src={logo} className='browse_logo' />
+        <img src={logo} className='browse_logo' alt='netflix_logo' />
     )
 }

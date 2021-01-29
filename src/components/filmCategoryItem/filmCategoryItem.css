@@ -1,46 +1,6 @@
-/* @keyframes slideFade {
-    0% {
-        position: relative;
-        left: auto;
-        display: block;
-    }
-    50% {
-        position: relative;
-        left: 0;
-    }
-    100% {
-        position: relative;
-        left: -100%;
-        display: none;
-    }
-
-} */
-
 .category_wrapper{
     position: relative;
     margin-bottom: 25px;
-}
-
-.slider_body, .slider{
-    /* display: flex;
-    overflow: hidden; */
-    /* margin-left: 30px;
-    margin-right: 30px; */
-    /* justify-content: space-around;
-    flex-grow: 0;
-    flex-shrink: 0;
-    align-items: center; */
-}
-
-.slider_wrapper{
-    /* width: 100%; */
-    /* position: relative; */
-    /* left: 0;
-    right: 0; */
-    /* overflow: hidden; */
-    /* z-index: 8; */
-    /* padding-left: 40px;
-    padding-right: 40px; */
 }
 
 .slider_wrapper button{
@@ -62,11 +22,6 @@
 .slick-next{
     position: absolute;
     right: 30px;
-}
-
-.slick-list{
-    /* display: flex;
-    justify-content: space-around; */
 }
 
 .slick-slide div{
@@ -119,28 +74,15 @@
     margin-left: 50px;
 }
 
-.slide{
+/* .slide{
     width: min-content;
-    /* margin-left: 5px;
-    margin-right: 5px; */
-    /* height: 176px;
-    width: 312px; */
-    border-radius: 8px;
-    /* margin: 0;
-    padding: 0; */
-    /* display: none; */
-    /* flex-grow: 0;
-    flex-shrink: 0; */
-    /* overflow: hidden;
-    flex-basis: 33%; */
-    /* transition: all 0.5s ease; */
-}
+    
+} */
 
 .slide img{
-    /* height: 100%;
-    width: auto; */
-    /* padding: 0;
-    margin: 0; */
+    height: 400px;
+    width: 275px;
+    border-radius: 8px;
 }
 
 .slide:hover{
