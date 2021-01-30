@@ -17,26 +17,6 @@ export default class Browse extends React.Component {
             }
         }
     }
-
-
-    //     fetch('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=20&order=RATING&type=ALL&ratingTo=10&yearFrom=1888&yearTo=2020&page=1',
-
-    // // Второй аргумент это объект с указаниями, методаи заголовка
-    //     { 
-    // 	method: "GET", 
-    // 	headers:{"accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d"} 
-    // 	})
-
-    // .then( response => {
-    // 	if (response.status !== 200) {
-
-    //         return Promise.reject(); 
-    //   }
-    //     return response.text()
-    // })
-    // .then(i => console.log(i))
-    // .catch(() => console.log('ошибка'));
-
     render() {
 
         const onClickHandler = () => {
