@@ -1,0 +1,145 @@
+.category_wrapper{
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.slider_wrapper button{
+    height: 150px;
+    width: 35px;
+    border-radius: 4px;
+}
+
+.slick-slider{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.slick-prev{
+    position: absolute;
+    left: 30px;
+}
+
+.slick-next{
+    position: absolute;
+    right: 30px;
+}
+
+.slick-slide div{
+    width: min-content;
+    margin: 0 auto;
+}
+
+.slick-slide div:focus{
+    outline: none;
+}
+
+.slick-slide div:hover{
+
+}
+
+.slick-arrow{
+    z-index: 9;
+}
+
+.slick-dots{
+    width: max-content;
+    height: 25px;
+    position: absolute;
+    top: -30px;
+    right: 50px;
+}
+
+.slick-dots li{
+    height: 5px;
+    margin: 0 2.5px;
+}
+
+.slick-dots li button{
+    height: 5px;
+    padding: 0;
+}
+
+.slick-dots li button:before{
+    content: '';
+    width: 20px;
+    height: 5px;
+    background-color: blanchedalmond;
+}
+
+.category_name{
+    font-size: 20px;
+    font-weight: bold;
+    color: #E5E5E5;
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+/* .slide{
+    width: min-content;
+    
+} */
+
+.slide img{
+    height: 400px;
+    width: 275px;
+    border-radius: 8px;
+}
+
+.slide:hover{
+    cursor: pointer;
+}
+
+/* .slide_prev{
+    position: absolute;
+    left: -250px;
+    display: block;
+    transition: all 0.5s ease;
+} */
+
+/* .slide_next{
+    position: absolute;
+    right: -250px;
+    display: block;
+    transition: all 0.5s ease;
+} */
+
+/* .slide_active{
+    display: block;
+} */
+
+/* .slide_fade{
+    animation: slideFade 2s ease normal;
+    position: relative;
+    left: -100%;
+    transition: all 0.5s;
+} */
+
+/* .slide_show{
+    position: relative;
+    right: -100%;
+    transition: all 0.5s;
+} */
+
+/* .arrow{
+    filter: brightness(0) invert(1);
+    z-index: 9;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.arrow:hover{
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.arrow_left{
+    transform: rotate(180deg);
+    position: absolute;
+    left: 30px;
+}
+
+.arrow_right{
+    position: absolute;
+    right: 30px;
+} */
