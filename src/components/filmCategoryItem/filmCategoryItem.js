@@ -4,6 +4,7 @@ import './filmCategoryItem.css'
 // import "~slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
 import axios from 'axios';
+import { DataLoadingEffect } from '../dataLoadingEffect/dataLoadingEffect'
 
 export class FilmCategoryItem extends Component {
     state = {
@@ -50,6 +51,7 @@ export class FilmCategoryItem extends Component {
             },
         ],
         allFilmsCollection: [],
+        dataFullLoaded: false,
     }
 
     componentDidMount() {
@@ -70,15 +72,16 @@ export class FilmCategoryItem extends Component {
                             }
                         ]
                     })
+                    if (index === this.state.GANRES.length - 1) {
+                        this.setState({
+                            dataFullLoaded: true
+                        })
+                    }
                 } catch (error) { console.error(error) }
             }
 
             async function insideFetch(item, index) {
                 await filmsFetch(item, index)
-                // if (index === this.state.GANRES.length - 1) {
-                //     setLoaded(true)
-                //     console.log(loadedState)
-                // }
             }
             await insideFetch(item, index)
         })
@@ -126,24 +129,26 @@ export class FilmCategoryItem extends Component {
         }
 
         return (
-            this.state.allFilmsCollection.map((item, index) => {
-                return (
-                    <div key={index + Math.random()} className='category_wrapper'>
-                        <div className='category_name'>{item.genre}</div>
-                        <div className='slider_wrapper'>
-                            <Slider {...sliderSettings}>
-                                {
-                                    item.films.map((item, index) => {
-                                        return (
-                                            <div key={index + Math.random()} className='slide'><img src={item.posterUrl} alt="" /></div>
-                                        )
-                                    })
-                                }
-                            </Slider>
+            this.state.dataFullLoaded
+                ? (this.state.allFilmsCollection.map((item, index) => {
+                    return (
+                        <div key={index + Math.random()} className='category_wrapper'>
+                            <div className='category_name'>{item.genre}</div>
+                            <div className='slider_wrapper'>
+                                <Slider {...sliderSettings}>
+                                    {
+                                        item.films.map((item, index) => {
+                                            return (
+                                                <div key={index + Math.random()} className='slide'><img src={item.posterUrl} alt="" /></div>
+                                            )
+                                        })
+                                    }
+                                </Slider>
+                            </div>
                         </div>
-                    </div>
-                )
-            })
+                    )
+                }))
+                : <DataLoadingEffect />
         )
     }
 }

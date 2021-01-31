@@ -30,11 +30,14 @@ export const Base = styled.form`
   width: 100%;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.span`
   color: #fff;
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 28px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Text = styled.p`

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { FooterContainer } from "../containers/footer";
 import logo from "../logo.svg";
-import { Button } from "../components/header/button/button";
 import { Form } from '../components';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { firebaseConfig } from '../constants/firebaseConfig'
-import { NavLink } from 'react-router-dom'
+import 'firebase/database'
+import { Redirect, NavLink } from 'react-router-dom'
 
 const headerStyle = {
     background: `url('/images/misc/home-bg.jpg')`,
@@ -24,24 +23,36 @@ const formWrapper = {
     textAlign: "left",
 }
 
-
-
-// firebase.initializeApp(firebaseConfig)
-
 export default function Signup() {
     const [userEmail, setUserEmail] = useState('')
+    const [userEmailRemember, setuserEmailRemember] = useState(false)
     const [userPassword, setUserPassword] = useState('')
     const [userPasswordRep, setUserPasswordRep] = useState('')
+    const [userNickname, setUserNickname] = useState('')
+    const [userLogedIn, setUserLogedIn] = useState(false)
+
+    if (localStorage.getItem('netflixEnteredEmail') && !userEmailRemember) {
+        setUserEmail(localStorage.getItem('netflixEnteredEmail'))
+        setuserEmailRemember(true)
+    }
 
     const submitHandler = (event) => {
         event.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
             .then((userCredential) => {
-                // Signed in
-                <NavLink to='/browse' />
-                // var user = userCredential.user;
 
+                var user = userCredential.user;
+
+                firebase.database().ref('users/' + user.uid).set({
+                    logedIn: true,
+                    nickname: userNickname,
+                    userImg: '/images/users/2.png',
+                })
+
+                localStorage.setItem('netflixUserID', user.uid)
+                setUserLogedIn(true)
             })
+            .then(localStorage.removeItem('netflixEnteredEmail'))
             .catch((error) => {
                 console.error(error.message)
                 // var errorCode = error.code;
@@ -53,7 +64,7 @@ export default function Signup() {
     return (<>
         <div className='header' style={headerStyle}>
             <div className='logoContainer'>
-                <img src={logo} alt="netflix_logo" className='logo' />
+                <NavLink to='/'><img src={logo} alt="netflix_logo" className='logo' /></NavLink>
             </div>
             <Form style={formWrapper}>
                 <Form.Title style={formTitle}>Sign Up</Form.Title>
@@ -61,12 +72,16 @@ export default function Signup() {
 
                 <Form.Base onSubmit={submitHandler} method="POST">
                     <Form.Input
+                        required
                         placeholder="Email address"
                         onChange={(event) => {
                             setUserEmail(event.target.value.trim())
                         }}
+                        defaultvalue={localStorage.getItem('netflixEnteredEmail')}
+                        value={userEmail}
                     />
                     <Form.Input
+                        required
                         type="password"
                         autoComplete="off"
                         placeholder="Password"
@@ -75,6 +90,7 @@ export default function Signup() {
                         }}
                     />
                     <Form.Input
+                        required
                         type="password"
                         autoComplete="off"
                         placeholder="Repeat password"
@@ -86,6 +102,13 @@ export default function Signup() {
                         ? null
                         : (<div>Passwords are not the same</div>)
                     }
+                    <Form.Input
+                        required
+                        placeholder="Nickname"
+                        onChange={(event) => {
+                            setUserNickname(event.target.value.trim())
+                        }}
+                    />
                     <Form.Submit type="submit" data-testid="sign-in">
                         Sign Up
           </Form.Submit>
@@ -97,6 +120,19 @@ export default function Signup() {
             </Form>
         </div>
         <FooterContainer />
+        {userLogedIn
+            ? <Redirect to='/browse' />
+            : null
+        }
+        {
+            localStorage.getItem('netflixUserID') && (firebase.database().ref('/users/' + localStorage.getItem('netflixUserID'))
+                .once('value')
+                .then((snapshot) => {
+                    return (snapshot.val().logedIn)
+                }))
+                ? <Redirect to='/browse' />
+                : null
+        }
     </>
     )
 

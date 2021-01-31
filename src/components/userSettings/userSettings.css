@@ -1,0 +1,41 @@
+.user_settings{
+    padding: 150px 50px 50px 50px;
+}
+
+.user_settings ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+.user_settings ul li{
+    margin: 5px;
+}
+
+.user_settings ul li:hover{
+    cursor: pointer;
+}
+
+.user_settings ul li img{
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.user_settings input{
+    height: 40px;
+    width: 200px;
+}
+
+.user_settings .buttons{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user_settings button{
+    f
+}
