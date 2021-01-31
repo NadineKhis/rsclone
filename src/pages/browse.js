@@ -11,7 +11,8 @@ export default class Browse extends React.Component {
     state = {
         userID: localStorage.getItem('netflixUserID'),
         userLogedIn: false,
-        currentBodyType: 'main'
+        currentBodyType: 'main',
+        userMenuActive: false,
     }
     render() {
 
@@ -39,10 +40,29 @@ export default class Browse extends React.Component {
             })
         }
 
+        // const onUserIconClickHandler = (event) => {
+        //     console.log('1')
+        //     if (event.closest('li') && event.closest('li').childNodes[0].className === 'smal_user_icon') {
+        //         this.setState({
+        //             userMenuActive: !this.state.userMenuActive
+        //         })
+        //     } else {
+        //         this.setState({
+        //             userMenuActive: false
+        //         })
+        //     }
+        // }
+
         return (
-            <div className='browse'>
+            <div className='browse' /*onClick={(event) => onUserIconClickHandler}*/ >
                 <div className='browse_header'>
-                    <BrowseNav userLogedIn={this.state.userLogedIn} onMainClick={onMainClickHandler} onCollectionClick={onCollectionClickHandler} onSettingsClick={onSettingsClickHandler} />
+                    <BrowseNav
+                        userLogedIn={this.state.userLogedIn}
+                        onMainClick={onMainClickHandler}
+                        onCollectionClick={onCollectionClickHandler}
+                        onSettingsClick={onSettingsClickHandler}
+                        userMenuActive={this.state.userMenuActive}
+                    />
                 </div>
                 {this.state.userLogedIn
                     ? (<React.Fragment>
