@@ -1,5 +1,7 @@
 .user_settings{
     padding: 150px 50px 50px 50px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .user_settings h2{
@@ -39,7 +41,7 @@
 .user_settings .buttons{
     margin-top: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .user_settings button{

@@ -5,6 +5,8 @@ import './filmCategoryItem.css'
 import Slider from "react-slick";
 import axios from 'axios';
 import { DataLoadingEffect } from '../dataLoadingEffect/dataLoadingEffect'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 export class FilmCategoryItem extends Component {
     state = {
@@ -128,6 +130,21 @@ export class FilmCategoryItem extends Component {
             ]
         }
 
+        const onAddFilmButtonClick = (event) => {
+            const userId = localStorage.getItem('netflixUserID')
+            const currentFilmID = event.target.closest('div').dataset.filmid
+
+            firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+                let currentUserFilmCollection = snapshot.val().userFilmCollection || []
+
+                firebase.database().ref('users/' + userId).update({
+                    userFilmCollection: [...currentUserFilmCollection, currentFilmID]
+                })
+            })
+
+
+        }
+
         return (
             this.state.dataFullLoaded
                 ? (this.state.allFilmsCollection.map((item, index) => {
@@ -139,7 +156,7 @@ export class FilmCategoryItem extends Component {
                                     {
                                         item.films.map((item, index) => {
                                             return (
-                                                <div key={index + Math.random()} className='slide'><img src={item.posterUrl} alt="" /></div>
+                                                <div data-filmid={item.filmId} onDoubleClick={(event) => onAddFilmButtonClick(event)} key={index + Math.random()} className='slide'><img src={item.posterUrlPreview} alt="" /></div>
                                             )
                                         })
                                     }
