@@ -22,7 +22,12 @@ export class UserCollection extends React.Component {
             currentUserFilmCollection = snapshot.val().userFilmCollection || []
         })
             .then(() => {
-                // console.log(currentUserFilmCollection)
+                if (currentUserFilmCollection.length === 0) {
+                    this.setState({
+                        userFilmsLoaded: true
+                    })
+                    return
+                }
                 currentUserFilmCollection.map((item, index) => {
                     const filmsFetch = async () => {
                         try {
@@ -55,16 +60,41 @@ export class UserCollection extends React.Component {
     }
     render() {
         // console.log(this.state.userFilmCollection)
+        const onDeleteFilmButtonClick = (event) => {
+            const filmid = event.target.closest('div').dataset.filmid
+            let currentUserFilmCollection
+            // let index
+
+            firebase.database().ref('/users/' + localStorage.getItem('netflixUserID')).once('value').then((snapshot) => {
+                currentUserFilmCollection = snapshot.val().userFilmCollection
+            })
+                .then(() => {
+                    Object.entries(currentUserFilmCollection).forEach(n => n[1] === filmid && delete currentUserFilmCollection[n[0]])
+                    // console.log(currentUserFilmCollection)  
+                    // index = currentUserFilmCollection.findIndex(filmid)
+                    // console.log(typeof (currentUserFilmCollection))
+                    // currentUserFilmCollection.splice(currentUserFilmCollection.findIndex(filmid), 1)
+                    firebase.database().ref('users/' + localStorage.getItem('netflixUserID')).update({
+                        userFilmCollection: currentUserFilmCollection
+                    })
+                })
+        }
+
         return (
             this.state.userFilmsLoaded
                 ? (
                     <div className='user_films_wrapper'>
                         {
-                            this.state.userFilmCollection.map((item, index) => {
-                                return (<div key={index}>
-                                    <img src={item.posterUrlPreview} className='user_collection_slide' alt='user_film' />
-                                </div>)
-                            })
+                            this.state.userFilmCollection.length === 0
+                                ? (<h2 style={{ color: '#fff' }}>There is no films in your collection yet!</h2>)
+                                : (
+                                    this.state.userFilmCollection.map((item, index) => {
+                                        return (<div key={index} data-filmid={item.filmId} onDoubleClick={(event) => onDeleteFilmButtonClick(event)}>
+                                            <img src={item.posterUrlPreview} className='user_collection_slide' alt='user_film' />
+                                        </div>)
+                                    })
+                                )
+
                         }
                     </div>
                 )
