@@ -1,0 +1,19 @@
+.user_films_wrapper {
+    padding: 150px 50px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.user_films_wrapper .user_collection_slide{
+    margin: 20px 10px;
+    border-radius: 8px;
+    height: 400px;
+    width: 275px;
+}
+
+.user_films_wrapper .user_collection_slide:hover{
+    cursor: pointer;
+}
