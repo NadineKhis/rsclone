@@ -185,6 +185,7 @@ export class FilmCategoryItem extends Component {
     });
   }
 
+
   render() {
     const sliderSettings = {
       dots: true,

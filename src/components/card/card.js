@@ -1,7 +1,9 @@
 import React, {Component}  from 'react';
 // import axios from "axios";
 import PropTypes from 'prop-types';
-import {Feature, FeatureTitle, FeatureText, FeatureClose, Content,  BeforeDescription, PlayButton, AddToList, BtnContainer} from "./styles/card"
+import {Feature, FeatureTitle, FeatureText, FeatureClose, Content,  BeforeDescription, AddToList, BtnContainer} from "./styles/card"
+import Player from "../player";
+
 
 export class CardComponent extends Component {
   render() {
@@ -14,10 +16,16 @@ export class CardComponent extends Component {
           </BeforeDescription>
           <FeatureText>{this.props.description}</FeatureText>
           <BtnContainer>
-            <PlayButton onClick={() => console.log("play")}>► Play</PlayButton>
+            <Player >
+              <Player.Button/>
+              <Player.Video />
+
+            </Player>
+            {/*<PlayButton onClick={() => console.log("play")}>► Play</PlayButton>*/}
             <AddToList onClick={() => console.log("add")}>
               ✚ Add to list
             </AddToList>
+
           </BtnContainer>
           <FeatureClose onClick={() => this.props.closeCard()}>
             Close
