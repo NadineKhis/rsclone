@@ -8,6 +8,10 @@
     color: #fff;
 }
 
+.user_settings h2{
+    color: #fff;
+}
+
 .user_settings ul{
     list-style: none;
     display: flex;

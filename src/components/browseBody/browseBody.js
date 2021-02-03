@@ -3,6 +3,8 @@ import './browseBody.css'
 import { FilmCategoryItem } from '../filmCategoryItem/filmCategoryItem'
 import { UserSettings } from '../userSettings/userSettings'
 import { UserCollection } from '../UserCollection/UserCollection'
+import PropTypes from 'prop-types';
+
 
 export function BrowseBody(props) {
     const browseStyle = {
@@ -23,7 +25,7 @@ export function BrowseBody(props) {
                 <div className='browseBody_wrapper'>
                     <div className='current_film_describe' style={browseStyle}>
                         <h2>Watch Joker now</h2>
-                        <p>Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks - the one he paints for his job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him.</p>
+                        <p>Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks - the one he paints for his job as a clown, and the guise he projects in a futile attempt to feel like he&apos;s part of the world around him.</p>
                         <button>Play</button>
                     </div>
                     <div className='main_wrapper'>
@@ -32,4 +34,8 @@ export function BrowseBody(props) {
                 </div>
             )
     }
+}
+BrowseBody.propTypes = {
+    children: PropTypes.node,
+    bodyType: PropTypes.node
 }
