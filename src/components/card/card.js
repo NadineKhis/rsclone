@@ -21,7 +21,7 @@ export class CardComponent extends Component {
 
             </Player >
             {/*<PlayButton onClick={() => console.log("play")}>► Play</PlayButton>*/}
-            <AddToList onClick={() => console.log("add")}>
+            <AddToList onClick={() => this.props.AddFilmButtonClick(this.props.filmid)}>
               ✚ Add
             </AddToList>
 

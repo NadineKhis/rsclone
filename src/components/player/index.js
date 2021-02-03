@@ -24,7 +24,7 @@ Player.propTypes = {
 
 Player.Video = function PlayerVideo(props) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
-  console.log(props)
+  // console.log(props)
 
   const opts = {
     height: '390',
