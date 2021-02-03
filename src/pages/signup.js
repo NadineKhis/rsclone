@@ -47,6 +47,7 @@ export default function Signup() {
                     logedIn: true,
                     nickname: userNickname,
                     userImg: '/images/users/2.png',
+                    // userFilmCollection: [],
                 })
 
                 localStorage.setItem('netflixUserID', user.uid)

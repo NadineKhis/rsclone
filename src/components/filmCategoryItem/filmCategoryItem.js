@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import './filmCategoryItem.css'
-// import "~slick-carousel/slick/slick.css"
-// import "~slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
 import axios from 'axios';
-import {DataLoadingEffect} from '../dataLoadingEffect/dataLoadingEffect';
-
+import {DataLoadingEffect} from '../dataLoadingEffect/dataLoadingEffect'
+import firebase from 'firebase/app'
+import 'firebase/database'
 import {CardComponent} from "../card/card";
+
 
 export class FilmCategoryItem extends Component {
   constructor(props) {
@@ -102,31 +102,25 @@ export class FilmCategoryItem extends Component {
   }
 
   _handleClick(item) {
-    if (this.state.showInfo && !item["filmId"]) {
-      this.setState(() => {
-        return {
-          "showInfo": false,
-        }
-      });
-    } else {
-      this.getInfo(item)
-      this.setState(() => {
-        return {
-          "showInfo": true,
-          "filmId": item["filmId"],
-        }
-      });
-    }
+    this.getInfo(item)
+    this.setState(() => {
+      return {
+        "showInfo": true,
+        "filmId": item["filmId"]
+      }
+    });
 
   }
 
   async getInfo(item) {
-    const filmId = item["filmId"];
+    const filmId = item["filmId"]
+    console.log(filmId)
     try {
       let responseInfo = await axios.get(`https://kinopoiskapiunofficial.tech//api/v2.1/films/${filmId}`,
         {
           headers: {"accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d"}
         })
+      let filmid = responseInfo.data["data"]["filmId"]
       let title = responseInfo.data["data"]["nameRu"];
       let description = responseInfo.data["data"]["description"];
       let year = responseInfo.data["data"]["year"];
@@ -137,6 +131,8 @@ export class FilmCategoryItem extends Component {
           "description": description,
           "year": year,
           "poster": poster,
+          "filmid": filmid,
+
         }
       });
     } catch (error) {
@@ -185,7 +181,6 @@ export class FilmCategoryItem extends Component {
     });
   }
 
-
   render() {
     const sliderSettings = {
       dots: true,
@@ -227,6 +222,22 @@ export class FilmCategoryItem extends Component {
       afterChange: this.nextClick,
     }
 
+    const onAddFilmButtonClickHandler = (item) => {
+      const userId = localStorage.getItem('netflixUserID')
+      const currentFilmID = item
+
+      firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+        let currentUserFilmCollection = snapshot.val().userFilmCollection || []
+
+        if (!currentUserFilmCollection.includes(currentFilmID)) {
+          firebase.database().ref('users/' + userId).update({
+            userFilmCollection: [...currentUserFilmCollection, currentFilmID]
+          })
+        }
+      })
+
+    }
+
     return (
       this.state.dataFullLoaded
         ? (this.state.allFilmsCollection.map((item, index) => {
@@ -234,7 +245,7 @@ export class FilmCategoryItem extends Component {
             <div key={index + Math.random()} className='category_wrapper'>
               <div className='category_name'>{item.genre}</div>
               <div className='slider_wrapper'>
-                <Slider ref={c => (this.slider = c)} {...sliderSettings}>
+                <Slider {...sliderSettings}>
                   {
                     item.films.map((item, index) => {
                       return (
@@ -244,14 +255,14 @@ export class FilmCategoryItem extends Component {
                     })
                   }
                 </Slider>
-              </div>
 
+              </div>
               {this.state.showInfo ?
-                <CardComponent title={this.state.title} description={this.state.description} year={this.state.year}
-                               preview={this.state.preview} closeCard={this.closeCard}/> :
+                <CardComponent filmid={this.state.filmid} title={this.state.title} description={this.state.description}
+                               year={this.state.year} preview={this.state.preview} closeCard={this.closeCard}
+                               AddFilmButtonClick={onAddFilmButtonClickHandler}/> :
                 null
               }
-
             </div>
           )
         }))

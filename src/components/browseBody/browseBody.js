@@ -2,7 +2,9 @@ import React from 'react'
 import './browseBody.css'
 import { FilmCategoryItem } from '../filmCategoryItem/filmCategoryItem'
 import { UserSettings } from '../userSettings/userSettings'
+import { UserCollection } from '../UserCollection/UserCollection'
 import PropTypes from 'prop-types';
+
 
 export function BrowseBody(props) {
     const browseStyle = {
@@ -14,7 +16,7 @@ export function BrowseBody(props) {
 
     switch (props.bodyType) {
         case 'collection':
-            return (<div style={{ color: 'white' }}>Collection</div>)
+            return <UserCollection />
         case 'settings':
             return <UserSettings />
         default:
@@ -33,7 +35,6 @@ export function BrowseBody(props) {
             )
     }
 }
-
 BrowseBody.propTypes = {
     children: PropTypes.node,
     bodyType: PropTypes.node

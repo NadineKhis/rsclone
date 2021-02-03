@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { Feature, FeatureTitle, FeatureText, FeatureClose, Content, BeforeDescription, AddToList, BtnContainer } from "./styles/card"
 import Player from "../player";
 
-
 export class CardComponent extends Component {
   render() {
     return (
-      <Feature {...this.props} src={this.props.preview}>
+      <Feature {...this.props} src={this.props.preview} >
         <Content>
           <FeatureTitle>{this.props.title}</FeatureTitle>
           <BeforeDescription>
@@ -31,8 +30,7 @@ export class CardComponent extends Component {
             Close
           </FeatureClose>
         </Content>
-
-      </Feature>
+      </Feature >
     )
   }
 }
