@@ -19,7 +19,7 @@ export class CardComponent extends Component {
               ✚ Add to list
             </AddToList>
           </BtnContainer>
-          <FeatureClose onClick={() => {}}>
+          <FeatureClose onClick={() => this.props.closeCard()}>
             Close
           </FeatureClose>
         </Content>
@@ -34,4 +34,5 @@ CardComponent.propTypes = {
   description: PropTypes.string,
   year: PropTypes.string,
   preview: PropTypes.string,
+  closeCard: PropTypes.func,
 }

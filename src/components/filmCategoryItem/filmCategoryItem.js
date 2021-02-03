@@ -5,7 +5,7 @@ import './filmCategoryItem.css'
 import Slider from "react-slick";
 import axios from 'axios';
 import {DataLoadingEffect} from '../dataLoadingEffect/dataLoadingEffect';
-// import { card } from "../card/card";
+
 import {CardComponent} from "../card/card";
 
 export class FilmCategoryItem extends Component {
@@ -59,11 +59,10 @@ export class FilmCategoryItem extends Component {
       isVisible: false,
       filmId: null,
       activeCard: 0,
-      // updateCount: 0,
-      // slideIndex: 0
     }
     this._handleClick = this._handleClick.bind(this);
     this.nextClick = this.nextClick.bind(this);
+    this.closeCard = this.closeCard.bind(this);
   }
 
   componentDidMount() {
@@ -103,24 +102,26 @@ export class FilmCategoryItem extends Component {
   }
 
   _handleClick(item) {
-    this.getInfo(item)
-    this.setState(() => {
-      return {
-        "showInfo": true,
-        "filmId": item["filmId"]
-      }
-    });
+    if (this.state.showInfo && !item["filmId"]) {
+      this.setState(() => {
+        return {
+          "showInfo": false,
+        }
+      });
+    } else {
+      this.getInfo(item)
+      this.setState(() => {
+        return {
+          "showInfo": true,
+          "filmId": item["filmId"],
+        }
+      });
+    }
+
   }
 
   async getInfo(item) {
-    // e.preventDefault();
     const filmId = item["filmId"];
-    // this.setState(() => {
-    //   return {
-    //     "activeCard": 5,
-    //   }
-    // });
-    console.log(filmId)
     try {
       let responseInfo = await axios.get(`https://kinopoiskapiunofficial.tech//api/v2.1/films/${filmId}`,
         {
@@ -166,12 +167,9 @@ export class FilmCategoryItem extends Component {
         }
       });
     }
-    // this.sliderGoTo()
-
   }
 
   nextClick(e) {
-    console.log(e)
     this.setState(() => {
       return {
         "activeCard": e,
@@ -179,14 +177,13 @@ export class FilmCategoryItem extends Component {
     });
   }
 
-
-  sliderGoTo() {
-    if (this.state.activeCard) {
-      this.slider.slickGoTo(this.state.activeCard, false);
-    }
+  closeCard() {
+    this.setState(() => {
+      return {
+        "showInfo": false,
+      }
+    });
   }
-
-
 
   render() {
     const sliderSettings = {
@@ -246,13 +243,14 @@ export class FilmCategoryItem extends Component {
                     })
                   }
                 </Slider>
-
               </div>
+
               {this.state.showInfo ?
                 <CardComponent title={this.state.title} description={this.state.description} year={this.state.year}
-                               preview={this.state.preview}/> :
+                               preview={this.state.preview} closeCard={this.closeCard}/> :
                 null
               }
+
             </div>
           )
         }))
