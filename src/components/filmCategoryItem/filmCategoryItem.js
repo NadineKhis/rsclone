@@ -137,9 +137,11 @@ export class FilmCategoryItem extends Component {
             firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
                 let currentUserFilmCollection = snapshot.val().userFilmCollection || []
 
-                firebase.database().ref('users/' + userId).update({
-                    userFilmCollection: [...currentUserFilmCollection, currentFilmID]
-                })
+                if (!currentUserFilmCollection.includes(currentFilmID)) {
+                    firebase.database().ref('users/' + userId).update({
+                        userFilmCollection: [...currentUserFilmCollection, currentFilmID]
+                    })
+                }
             })
 
 

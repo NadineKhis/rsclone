@@ -1,7 +1,7 @@
 .user_films_wrapper {
     padding: 150px 50px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     flex-grow: 0;
     flex-shrink: 0;
