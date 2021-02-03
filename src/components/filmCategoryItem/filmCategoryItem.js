@@ -58,8 +58,12 @@ export class FilmCategoryItem extends Component {
       dataFullLoaded: false,
       isVisible: false,
       filmId: null,
+      activeCard: 0,
+      // updateCount: 0,
+      // slideIndex: 0
     }
-    this._handleClick = this._handleClick.bind(this)
+    this._handleClick = this._handleClick.bind(this);
+    this.nextClick = this.nextClick.bind(this);
   }
 
   componentDidMount() {
@@ -100,17 +104,22 @@ export class FilmCategoryItem extends Component {
 
   _handleClick(item) {
     this.getInfo(item)
-      this.setState(() => {
-        return {
-          "showInfo": true,
-          "filmId": item["filmId"]
-        }
-      });
-
+    this.setState(() => {
+      return {
+        "showInfo": true,
+        "filmId": item["filmId"]
+      }
+    });
   }
 
   async getInfo(item) {
-    const filmId = item["filmId"]
+    // e.preventDefault();
+    const filmId = item["filmId"];
+    // this.setState(() => {
+    //   return {
+    //     "activeCard": 5,
+    //   }
+    // });
     console.log(filmId)
     try {
       let responseInfo = await axios.get(`https://kinopoiskapiunofficial.tech//api/v2.1/films/${filmId}`,
@@ -137,7 +146,7 @@ export class FilmCategoryItem extends Component {
     try {
       let responsePreview = await axios.get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${filmId}/frames`,
         {
-          headers: { "accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d" }
+          headers: {"accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d"}
         })
       let preview = responsePreview.data.frames[0]["image"];
       this.setState(() => {
@@ -157,7 +166,26 @@ export class FilmCategoryItem extends Component {
         }
       });
     }
+    // this.sliderGoTo()
+
   }
+
+  nextClick(e) {
+    console.log(e)
+    this.setState(() => {
+      return {
+        "activeCard": e,
+      }
+    });
+  }
+
+
+  sliderGoTo() {
+    if (this.state.activeCard) {
+      this.slider.slickGoTo(this.state.activeCard, false);
+    }
+  }
+
 
 
   render() {
@@ -167,7 +195,7 @@ export class FilmCategoryItem extends Component {
       speed: 500,
       slidesToShow: 5,
       slidesToScroll: 5,
-      initialSlide: 0,
+      initialSlide: Number(`${this.state.activeCard}`),
       responsive: [
         {
           breakpoint: 1919,
@@ -197,7 +225,8 @@ export class FilmCategoryItem extends Component {
             slidesToScroll: 1
           }
         }
-      ]
+      ],
+      afterChange: this.nextClick,
     }
 
     return (
@@ -207,7 +236,7 @@ export class FilmCategoryItem extends Component {
             <div key={index + Math.random()} className='category_wrapper'>
               <div className='category_name'>{item.genre}</div>
               <div className='slider_wrapper'>
-                <Slider {...sliderSettings}>
+                <Slider ref={c => (this.slider = c)} {...sliderSettings}>
                   {
                     item.films.map((item, index) => {
                       return (
@@ -220,7 +249,8 @@ export class FilmCategoryItem extends Component {
 
               </div>
               {this.state.showInfo ?
-                <CardComponent title={this.state.title} description={this.state.description} year={this.state.year} preview={this.state.preview}/> :
+                <CardComponent title={this.state.title} description={this.state.description} year={this.state.year}
+                               preview={this.state.preview}/> :
                 null
               }
             </div>
