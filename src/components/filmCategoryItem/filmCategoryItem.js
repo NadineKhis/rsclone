@@ -1,59 +1,64 @@
 import React, { Component } from 'react'
 import './filmCategoryItem.css'
-// import "~slick-carousel/slick/slick.css"
-// import "~slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
 import axios from 'axios';
 import { DataLoadingEffect } from '../dataLoadingEffect/dataLoadingEffect'
 import firebase from 'firebase/app'
 import 'firebase/database'
+import { CardComponent } from "../card/card";
 
 export class FilmCategoryItem extends Component {
-    state = {
-        GANRES: [
-            {
-                "id": 3,
-                "genre": "Action"
-            },
-            {
-                "id": 13,
-                "genre": "Western"
-            },
-            {
-                "id": 17,
-                "genre": "Detective"
-            },
-            {
-                "id": 8,
-                "genre": "Drama"
-            },
-            {
-                "id": 6,
-                "genre": "Comedy"
-            },
-            {
-                "id": 7,
-                "genre": "Melodrama"
-            },
-            {
-                "id": 14,
-                "genre": "Cartoon"
-            },
-            {
-                "id": 4,
-                "genre": "Thriller"
-            },
-            {
-                "id": 1,
-                "genre": "Horror"
-            },
-            {
-                "id": 2,
-                "genre": "Fantastic"
-            },
-        ],
-        allFilmsCollection: [],
-        dataFullLoaded: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            GANRES: [
+                {
+                    "id": 3,
+                    "genre": "Action"
+                },
+                {
+                    "id": 13,
+                    "genre": "Western"
+                },
+                {
+                    "id": 17,
+                    "genre": "Detective"
+                },
+                {
+                    "id": 8,
+                    "genre": "Drama"
+                },
+                {
+                    "id": 6,
+                    "genre": "Comedy"
+                },
+                {
+                    "id": 7,
+                    "genre": "Melodrama"
+                },
+                {
+                    "id": 14,
+                    "genre": "Cartoon"
+                },
+                {
+                    "id": 4,
+                    "genre": "Thriller"
+                },
+                {
+                    "id": 1,
+                    "genre": "Horror"
+                },
+                {
+                    "id": 2,
+                    "genre": "Fantastic"
+                },
+            ],
+            allFilmsCollection: [],
+            dataFullLoaded: false,
+            isVisible: false,
+            filmId: null,
+        }
+        this._handleClick = this._handleClick.bind(this)
     }
 
     componentDidMount() {
@@ -79,21 +84,89 @@ export class FilmCategoryItem extends Component {
                             dataFullLoaded: true
                         })
                     }
-                } catch (error) { console.error(error) }
+                } catch (error) {
+                    console.error(error)
+                }
             }
 
             async function insideFetch(item, index) {
                 await filmsFetch(item, index)
             }
+
             await insideFetch(item, index)
         })
     }
+
+    _handleClick(item) {
+        this.getInfo(item)
+        this.setState(() => {
+            return {
+                "showInfo": true,
+                "filmId": item["filmId"]
+            }
+        });
+
+    }
+
+    async getInfo(item) {
+        const filmId = item["filmId"]
+        console.log(filmId)
+        try {
+            let responseInfo = await axios.get(`https://kinopoiskapiunofficial.tech//api/v2.1/films/${filmId}`,
+                {
+                    headers: { "accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d" }
+                })
+            let filmid = responseInfo.data["data"]["filmId"]
+            let title = responseInfo.data["data"]["nameRu"];
+            let description = responseInfo.data["data"]["description"];
+            let year = responseInfo.data["data"]["year"];
+            let poster = responseInfo.data["data"]["posterUrl"]
+            this.setState(() => {
+                return {
+                    "title": title,
+                    "description": description,
+                    "year": year,
+                    "poster": poster,
+                    "filmid": filmid,
+
+                }
+            });
+        } catch (error) {
+            console.error(error)
+        }
+
+        // not always exist
+        try {
+            let responsePreview = await axios.get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${filmId}/frames`,
+                {
+                    headers: { "accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d" }
+                })
+            let preview = responsePreview.data.frames[0]["image"];
+            this.setState(() => {
+                return {
+                    "preview": preview,
+                }
+            });
+            this.setState(() => {
+                return {
+                    "preview": preview,
+                }
+            });
+        } catch (e) {
+            this.setState(() => {
+                return {
+                    "preview": this.state.poster,
+                }
+            });
+        }
+    }
+
 
 
     render() {
         const sliderSettings = {
             dots: true,
-            infinite: false,
+            infinite: true,
             speed: 500,
             slidesToShow: 5,
             slidesToScroll: 5,
@@ -130,9 +203,9 @@ export class FilmCategoryItem extends Component {
             ]
         }
 
-        const onAddFilmButtonClick = (event) => {
+        const onAddFilmButtonClickHandler = (item) => {
             const userId = localStorage.getItem('netflixUserID')
-            const currentFilmID = event.target.closest('div').dataset.filmid
+            const currentFilmID = item
 
             firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
                 let currentUserFilmCollection = snapshot.val().userFilmCollection || []
@@ -143,7 +216,6 @@ export class FilmCategoryItem extends Component {
                     })
                 }
             })
-
 
         }
 
@@ -158,12 +230,18 @@ export class FilmCategoryItem extends Component {
                                     {
                                         item.films.map((item, index) => {
                                             return (
-                                                <div data-filmid={item.filmId} onDoubleClick={(event) => onAddFilmButtonClick(event)} key={index + Math.random()} className='slide'><img src={item.posterUrlPreview} alt="" /></div>
+                                                <div key={index + Math.random()} className='slide' onClick={() => this._handleClick(item)}><img
+                                                    src={item.posterUrl} alt="" /></div>
                                             )
                                         })
                                     }
                                 </Slider>
+
                             </div>
+                            {this.state.showInfo ?
+                                <CardComponent filmid={this.state.filmid} title={this.state.title} description={this.state.description} year={this.state.year} preview={this.state.preview} AddFilmButtonClick={onAddFilmButtonClickHandler} /> :
+                                null
+                            }
                         </div>
                     )
                 }))

@@ -36,7 +36,6 @@ export class UserCollection extends React.Component {
                                     headers: { "accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d" }
                                 })
                             let currentFilm = response.data.data
-                            console.log(response)
 
                             this.setState({
                                 userFilmCollection: [...this.state.userFilmCollection, currentFilm]
@@ -61,7 +60,7 @@ export class UserCollection extends React.Component {
     render() {
         // console.log(this.state.userFilmCollection)
         const onDeleteFilmButtonClick = (event) => {
-            const filmid = event.target.closest('div').dataset.filmid
+            const filmid = parseInt(event.target.closest('div').dataset.filmid)
             let currentUserFilmCollection
             // let index
 
@@ -70,10 +69,6 @@ export class UserCollection extends React.Component {
             })
                 .then(() => {
                     Object.entries(currentUserFilmCollection).forEach(n => n[1] === filmid && delete currentUserFilmCollection[n[0]])
-                    // console.log(currentUserFilmCollection)  
-                    // index = currentUserFilmCollection.findIndex(filmid)
-                    // console.log(typeof (currentUserFilmCollection))
-                    // currentUserFilmCollection.splice(currentUserFilmCollection.findIndex(filmid), 1)
                     firebase.database().ref('users/' + localStorage.getItem('netflixUserID')).update({
                         userFilmCollection: currentUserFilmCollection
                     })
