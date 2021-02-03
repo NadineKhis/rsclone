@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Button, Overlay, Inner, Close } from './styles/player';
 import PropTypes from 'prop-types';
+import YouTube from 'react-youtube';
 
 
 export const PlayerContext = createContext();
@@ -21,16 +22,36 @@ Player.propTypes = {
   restProps: PropTypes.node
 }
 
-Player.Video = function PlayerVideo({ src }) {
+Player.Video = function PlayerVideo(props) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
+  console.log(props)
+
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
+  // function _onReady(event) {
+  //   // access to player in all event handlers via event.target
+  //   event.target.pauseVideo();
+  // }
 
   return showPlayer
     ? ReactDOM.createPortal(
       <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
         <Inner>
-          <video id="netflix-player" controls>
-            <source src={src} type="video/mp4" />
-          </video>
+          {/* <video id="netflix-player" x-webkit-airplay="allow" data-youtube-id="N9oxmRT2YWw" controls
+            className="video-js"
+            preload="auto"
+            data-setup='{}'>
+            <source src='//www.youtube.com/watch?v=gbcVZgO4n4E' type="video/mp4" />
+          </video> */}
+
+          <YouTube videoId="gbcVZgO4n4E" opts={opts} />
           <Close />
         </Inner>
       </Overlay>,
@@ -44,7 +65,7 @@ Player.Video.propTypes = {
 }
 
 Player.Button = function PlayerButton({ ...restProps }) {
-  const {  setShowPlayer } = useContext(PlayerContext);
+  const { setShowPlayer } = useContext(PlayerContext);
 
   return (
     <Button onClick={() => setShowPlayer((showPlayer) => !showPlayer)} {...restProps}>
