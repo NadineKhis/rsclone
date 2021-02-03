@@ -116,20 +116,24 @@ export const Maturity = styled.div`
 `;
 
 export const AddToList = styled.div`
-  margin-left: 14px;
-  cursor: pointer;
   background: gray;
-  border-radius: 11px;
-  padding: 19px 34px;
+  border-radius: 5px;
+  padding: 0 30px;
   color: #ffffff;
-  display: inline-block;
+  display: flex;
   font: normal bold 20px/1 "Open Sans", sans-serif;
   text-align: center;
   margin-right: 15px;
   margin-top: 15px;
-
+  cursor: pointer;
+  border-color: gray;
+  text-transform: uppercase;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
   &:hover {
-    background: #5c5c5c;
+    transform: scale(1.05);
+    background-color: #b3b3b3;
   }
 `;
 

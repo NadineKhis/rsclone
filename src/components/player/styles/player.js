@@ -69,7 +69,6 @@ export const Button = styled.button`
   margin-top: 15px;
   cursor: pointer;
   border-color: #ff0a16;
-
   text-transform: uppercase;
   font-size: 18px;
   align-items: center;
