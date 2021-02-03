@@ -62,54 +62,6 @@ export class FilmCategoryItem extends Component {
     this._handleClick = this._handleClick.bind(this)
   }
 
-  // state = {
-  //     GANRES: [
-  //         {
-  //             "id": 3,
-  //             "genre": "Action"
-  //         },
-  //         {
-  //             "id": 13,
-  //             "genre": "Western"
-  //         },
-  //         {
-  //             "id": 17,
-  //             "genre": "Detective"
-  //         },
-  //         {
-  //             "id": 8,
-  //             "genre": "Drama"
-  //         },
-  //         {
-  //             "id": 6,
-  //             "genre": "Comedy"
-  //         },
-  //         {
-  //             "id": 7,
-  //             "genre": "Melodrama"
-  //         },
-  //         {
-  //             "id": 14,
-  //             "genre": "Cartoon"
-  //         },
-  //         {
-  //             "id": 4,
-  //             "genre": "Thriller"
-  //         },
-  //         {
-  //             "id": 1,
-  //             "genre": "Horror"
-  //         },
-  //         {
-  //             "id": 2,
-  //             "genre": "Fantastic"
-  //         },
-  //     ],
-  //     allFilmsCollection: [],
-  //     dataFullLoaded: false,
-  //     showInfo: false,
-  // }
-
   componentDidMount() {
     this.state.GANRES.map(async (item, index) => {
       const filmsFetch = async item => {
@@ -119,7 +71,6 @@ export class FilmCategoryItem extends Component {
               headers: {"accept": "application/json", "X-API-KEY": "930e3dbb-b4ae-4aea-a8cd-2e7dd39b6b4d"}
             })
           let collection = response.data.films
-          // console.log(collection)
           this.setState({
             allFilmsCollection: [
               ...this.state.allFilmsCollection,
@@ -149,21 +100,12 @@ export class FilmCategoryItem extends Component {
 
   _handleClick(item) {
     this.getInfo(item)
-    // if (this.state.showInfo) {
-    //   this.setState(() => {
-    //     return {
-    //       "showInfo": false,
-    //       "filmId": null
-    //     }
-    //   });
-    // } else {
       this.setState(() => {
         return {
           "showInfo": true,
           "filmId": item["filmId"]
         }
       });
-    // }
 
   }
 

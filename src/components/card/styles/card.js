@@ -33,6 +33,8 @@ export const Feature = styled.div`
   background-position-x: right;
   background-repeat: no-repeat;
   background-color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
   @media (max-width: 1000px) {
     height: auto;
     background-size: auto;
@@ -51,14 +53,14 @@ export const FeatureTitle = styled.p`
 
 export const FeatureText = styled.p`
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   font-size: 18px;
   color: white;
   font-weight: ${({ fontWeight }) => (fontWeight === 'bold' ? 'bold' : 'normal')};
   margin: 0;
   overflow: hidden;
-  height: 150px;
+  height: 145px;
   text-overflow: ellipsis;
   //white-space: nowrap;
   @media (max-width: 600px) {
@@ -74,10 +76,8 @@ export const FeatureClose = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: 0;
-  img {
-    filter: brightness(0) invert(1);
-    width: 24px;
-  }
+  font-size: 20px;
+  text-shadow: 0 0 6px rgba(255,255,255,0.7);
 `;
 
 export const Content = styled.div`
@@ -89,7 +89,6 @@ export const Content = styled.div`
     max-width: none;
   }
 `;
-
 
 export const Group = styled.div`
   display: flex;
@@ -116,28 +115,48 @@ export const Maturity = styled.div`
   font-size: 12px;
 `;
 
-export const PlayButton = styled.div`
-  background:    #ff0000;
+export const AddToList = styled.div`
+  margin-left: 14px;
+  cursor: pointer;
+  background: gray;
   border-radius: 11px;
-  padding:       19px 54px;
-  color:         #ffffff;
-  display:       inline-block;
-  font:          normal bold 20px/1 "Open Sans", sans-serif;
-  text-align:    center;
+  padding: 19px 34px;
+  color: #ffffff;
+  display: inline-block;
+  font: normal bold 20px/1 "Open Sans", sans-serif;
+  text-align: center;
   margin-right: 15px;
   margin-top: 15px;
+
+  &:hover {
+    background: #5c5c5c;
+  }
 `;
 
-
-export const addToList = styled.div`
- margin-left: 14px;
-  background-color: black;
-  color: black;
+export const PlayButton = styled.div`
+  background: #ff0000;
+  border-radius: 11px;
+  padding: 19px 54px;
+  color: #ffffff;
+  display: inline-block;
+  font: normal bold 20px/1 "Open Sans", sans-serif;
+  text-align: center;
+  margin-right: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  &:hover {
+    background: #c50000;
+  }
 `;
 
-export const beforeDescription = styled.div`
+export const BeforeDescription = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 15px;
+`
+
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 

@@ -1,7 +1,7 @@
 import React, {Component}  from 'react';
 // import axios from "axios";
 import PropTypes from 'prop-types';
-import {Feature, FeatureTitle, FeatureText, FeatureClose, Content,  beforeDescription, PlayButton, addToList} from "./styles/card"
+import {Feature, FeatureTitle, FeatureText, FeatureClose, Content,  BeforeDescription, PlayButton, AddToList, BtnContainer} from "./styles/card"
 
 export class CardComponent extends Component {
   render() {
@@ -9,30 +9,19 @@ export class CardComponent extends Component {
       <Feature {...this.props} src={this.props.preview}>
         <Content>
           <FeatureTitle>{this.props.title}</FeatureTitle>
-          <beforeDescription>
+          <BeforeDescription>
             {this.props.year}
-          </beforeDescription>
+          </BeforeDescription>
           <FeatureText>{this.props.description}</FeatureText>
-          <div>
-            <PlayButton>► Play</PlayButton>
-            <addToList >
-              <img src="../../../public/images/icons/add.png" alt="Add" />
-            </addToList>
-          </div>
-
-
-          <FeatureClose >
-            <img src="../../../public/images/icons/close.png" alt="Close" />
+          <BtnContainer>
+            <PlayButton onClick={() => console.log("play")}>► Play</PlayButton>
+            <AddToList onClick={() => console.log("add")}>
+              ✚ Add to list
+            </AddToList>
+          </BtnContainer>
+          <FeatureClose onClick={() => {}}>
+            Close
           </FeatureClose>
-          {/*<Group margin="30px 0" flexDirection="row" alignItems="center">*/}
-          {/*  <Maturity >16+</Maturity>*/}
-          {/*  <FeatureText fontWeight="bold">*/}
-          {/*    Жанр фантастика*/}
-          {/*  </FeatureText>*/}
-          {/*  {this.props.year}*/}
-          {/*</Group>*/}
-
-          {/*<img src={this.props.preview} alt=""/>*/}
         </Content>
 
       </Feature>
