@@ -23,7 +23,7 @@ export class CardComponent extends Component {
             </Player>
             {/*<PlayButton onClick={() => console.log("play")}>► Play</PlayButton>*/}
             <AddToList onClick={() => console.log("add")}>
-              ✚ Add to list
+              ✚ Add
             </AddToList>
 
           </BtnContainer>
