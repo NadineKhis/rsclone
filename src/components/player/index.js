@@ -35,22 +35,10 @@ Player.Video = function PlayerVideo(props) {
     },
   };
 
-  // function _onReady(event) {
-  //   // access to player in all event handlers via event.target
-  //   event.target.pauseVideo();
-  // }
-
   return showPlayer
     ? ReactDOM.createPortal(
       <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
         <Inner>
-          {/* <video id="netflix-player" x-webkit-airplay="allow" data-youtube-id="N9oxmRT2YWw" controls
-            className="video-js"
-            preload="auto"
-            data-setup='{}'>
-            <source src='//www.youtube.com/watch?v=gbcVZgO4n4E' type="video/mp4" />
-          </video> */}
-
           <YouTube videoId="gbcVZgO4n4E" opts={opts} />
           <Close />
         </Inner>
