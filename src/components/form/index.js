@@ -71,7 +71,7 @@ Form.Input = function FormInput({ children, ...restProps }) {
   return <Input {...restProps}>{children}</Input>;
 };
 
-Form.Input .propTypes = {
+Form.Input.propTypes = {
   children: PropTypes.node,
   direction: PropTypes.string
 }

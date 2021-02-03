@@ -3,7 +3,7 @@ import { Logo } from '../browsePageLogo/logo'
 import './browseNav.css'
 import firebase from 'firebase/app'
 import 'firebase/database'
-import { Router, Switch, Route, BrowserRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 export function BrowseNav(props) {
     const [userMenuActive, setUserMenuActive] = useState(false)
@@ -35,13 +35,13 @@ export function BrowseNav(props) {
                 ? (<div className='browse_nav_menu'>
                     <div className='navigation'>
                         <ul className='navigation_menu'>
-                            <li className='active' onClick={props.onMainClick}>Main</li>
+                            <li onClick={props.onMainClick}>Main</li>
                             <li onClick={props.onCollectionClick}>My collection</li>
                         </ul>
                     </div>
                     <ul className='navigation_icons'>
                         <li><img src="/images/icons/search.png" alt="search" className='search_icon' /></li>
-                        <li onClick={onUserIconClickHandler}><img src={'/images/users/2.png' || localStorage.getItem('netflixCurrentUserIMG')} alt="user_icon" className='smal_user_icon' /></li>
+                        <li onClick={onUserIconClickHandler}><img src={localStorage.getItem('netflixCurrentUserIMG')} alt="user_icon" className='smal_user_icon' /></li>
                     </ul>
                     {userMenuActive
                         ? (<ul className='user_menu'>
@@ -56,7 +56,6 @@ export function BrowseNav(props) {
                 ? null
                 : <Redirect to='/' />
             }
-
         </div >
     )
 }
