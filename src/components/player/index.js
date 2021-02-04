@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 
 
-export const PlayerContext = createContext();
+export const PlayerContext = createContext('');
 
 export default function Player({ children, ...restProps }) {
   const [showPlayer, setShowPlayer] = useState(false);

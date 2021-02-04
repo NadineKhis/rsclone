@@ -4,6 +4,7 @@ import './browseNav.css'
 import firebase from 'firebase/app'
 import 'firebase/database'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 export function BrowseNav(props) {
     const [userMenuActive, setUserMenuActive] = useState(false)
@@ -40,7 +41,7 @@ export function BrowseNav(props) {
                         </ul>
                     </div>
                     <ul className='navigation_icons'>
-                        <li><img src="/images/icons/search.png" alt="search" className='search_icon' /></li>
+                        <li><img src="../../../public/images/icons/search.png" alt="search" className='search_icon' /></li>
                         <li onClick={onUserIconClickHandler}><img src={localStorage.getItem('netflixCurrentUserIMG')} alt="user_icon" className='smal_user_icon' /></li>
                     </ul>
                     {userMenuActive
@@ -58,4 +59,11 @@ export function BrowseNav(props) {
             }
         </div >
     )
+}
+
+BrowseNav.PropTypes = {
+  userLogedIn: PropTypes.boolean,
+  onMainClick: PropTypes.func,
+  onCollectionClick: PropTypes.func,
+  onSettingsClick: PropTypes.func,
 }
