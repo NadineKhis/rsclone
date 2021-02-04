@@ -38,7 +38,6 @@ export const Feature = styled.div`
   @media (max-width: 1000px) {
     height: auto;
     background-size: auto;
- 
   }
 `;
 
@@ -90,17 +89,6 @@ export const Content = styled.div`
   }
 `;
 
-export const Group = styled.div`
-  display: flex;
-  flex-direction: ${({ flexDirection }) => (flexDirection === 'row' ? 'row' : 'column')};
-  ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
-  ${({ margin }) => margin && `margin: ${margin}`};
-  > ${Container}:first-of-type {
-    @media (min-width: 1100px) {
-      margin-top: -100px;
-    }
-  }
-`;
 
 export const Maturity = styled.div`
   background-color: ${({ rating }) => (rating >= 15 ? '#f44336' : '#2f9600')};
@@ -137,22 +125,6 @@ export const AddToList = styled.div`
   }
 `;
 
-export const PlayButton = styled.div`
-  background: #ff0000;
-  border-radius: 11px;
-  padding: 19px 54px;
-  color: #ffffff;
-  display: inline-block;
-  font: normal bold 20px/1 "Open Sans", sans-serif;
-  text-align: center;
-  margin-right: 15px;
-  margin-top: 15px;
-  cursor: pointer;
-  &:hover {
-    background: #c50000;
-  }
-`;
-
 export const BeforeDescription = styled.div`
   display: flex;
   flex-direction: row;
@@ -163,4 +135,3 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-direction: row;
 `
-

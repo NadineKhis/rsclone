@@ -22,7 +22,7 @@ Player.propTypes = {
   restProps: PropTypes.node
 }
 
-Player.Video = function PlayerVideo(props) {
+Player.Video = function PlayerVideo() {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
   // console.log(props)
 
@@ -40,6 +40,7 @@ Player.Video = function PlayerVideo(props) {
       <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
         <Inner>
           <YouTube videoId="gbcVZgO4n4E" opts={opts} />
+          {/*<YouTube videoId={this.props.filmId} opts={opts} />*/}
           <Close />
         </Inner>
       </Overlay>,

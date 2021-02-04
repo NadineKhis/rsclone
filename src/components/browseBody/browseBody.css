@@ -41,3 +41,10 @@
 .main_wrapper{
     margin-top: 50px;
 }
+
+@media (min-width: 768px) {
+    .main_wrapper{
+        margin-top: 25px;
+    }
+
+}

@@ -17,11 +17,11 @@ export class CardComponent extends Component {
           <BtnContainer>
             <Player src={'https://www.youtube.com/watch?v=gbcVZgO4n4E'}>
               <Player.Button />
-              <Player.Video />
+              <Player.Video filmId={this.props.filmId}/>
 
             </Player >
             {/*<PlayButton onClick={() => console.log("play")}>► Play</PlayButton>*/}
-            <AddToList onClick={() => this.props.AddFilmButtonClick(this.props.filmid)}>
+            <AddToList id="addFilm" onClick={() => this.props.AddFilmButtonClick(this.props.filmId)}>
               ✚ Add
             </AddToList>
 
@@ -41,4 +41,6 @@ CardComponent.propTypes = {
   year: PropTypes.string,
   preview: PropTypes.string,
   closeCard: PropTypes.func,
+  AddFilmButtonClick: PropTypes.func,
+  filmId: PropTypes.number,
 }
