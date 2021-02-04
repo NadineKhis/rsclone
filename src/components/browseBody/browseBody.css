@@ -1,0 +1,50 @@
+.browse{
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.browseBody_wrapper{
+    color: #fff;
+}
+
+.browseBody_wrapper p{
+    max-width: 450px;
+}
+
+.browseBody_wrapper button{
+    width: 125px;
+    height: 32px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 4px;
+    border: none;
+}
+
+.browseBody_wrapper button:hover{
+    background: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+}
+
+.browseBody_wrapper button:active{
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.browseBody_wrapper button:focus{
+    outline: none;
+}
+
+.current_film_describe{
+    padding: 200px 50px 0;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.main_wrapper{
+    margin-top: 50px;
+}
+
+@media (min-width: 768px) {
+    .main_wrapper{
+        margin-top: 25px;
+    }
+
+}
