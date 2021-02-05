@@ -32,7 +32,12 @@ export function FooterContainer() {
           <Footer.Link href="#">Media Center</Footer.Link>
           <Footer.Link href="#">Terms of Use</Footer.Link>
           <Footer.Link href="#">Contact Us</Footer.Link>
+        </Footer.Column>
 
+        <Footer.Column>
+          <Footer.Link href="#">Done in accordance with  <a href="https://rs.school/">RS School</a>  2020Q3 task RS Clone</Footer.Link>
+          <Footer.Link href="#"><a href="https://github.com/NadineKhis">@NadineKhis</a></Footer.Link>
+          <Footer.Link href="#"><a href="https://github.com/Demanikys">@Demanikys</a></Footer.Link>
         </Footer.Column>
       </Footer.Row>
     </Footer>

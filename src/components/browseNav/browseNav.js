@@ -41,7 +41,7 @@ export function BrowseNav(props) {
                         </ul>
                     </div>
                     <ul className='navigation_icons'>
-                        <li><img src="../../../public/images/icons/search.png" alt="search" className='search_icon' /></li>
+                        <li><img src="../../../public/images/icons/search.png" alt="🔎" className='search_icon' /></li>
                         <li onClick={onUserIconClickHandler}><img src={localStorage.getItem('netflixCurrentUserIMG')} alt="user_icon" className='smal_user_icon' /></li>
                     </ul>
                     {userMenuActive
